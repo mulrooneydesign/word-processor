@@ -1,0 +1,22 @@
+.toolBar {
+  display: flex;
+  gap: var(--xxs-spacing);
+  padding: var(--xs-spacing);
+  background: var(--tint);
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  text-decoration: inherit;
+  line-height: var(--xxs-spacing);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}

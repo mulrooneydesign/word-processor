@@ -1,0 +1,12 @@
+.textArea {
+  width: calc(100% - var(--lg-spacing));
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 300px;
+  margin: var(--xs-spacing);
+}
+
+.container {
+  padding: var(--xs-spacing);
+}
