@@ -7,6 +7,7 @@ It is using React, Typescript, and vitest for unit testing.
 **To start:**
 
 `npm i`
+
 `npm run dev`
 
 ## Features for future Development
@@ -16,3 +17,8 @@ It is using React, Typescript, and vitest for unit testing.
 - Undo
 - Redo
 - Inline editing
+
+## Screenshot
+
+![image](https://user-images.githubusercontent.com/43812236/233799179-772d2814-895e-4d47-8931-0914d293c4b5.png)
+
