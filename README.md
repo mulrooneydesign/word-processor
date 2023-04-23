@@ -20,5 +20,6 @@ It is using React, Typescript, and vitest for unit testing.
 
 ## Screenshot
 
-![image](https://user-images.githubusercontent.com/43812236/233799179-772d2814-895e-4d47-8931-0914d293c4b5.png)
+![image](https://user-images.githubusercontent.com/43812236/233854310-603347f0-18e6-4bee-9d42-e24b89c84f0a.png)
+
 
