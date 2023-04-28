@@ -1,8 +1,10 @@
-import { describe, expect, it as test } from 'vitest';
+import { describe, expect, it as test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import Button from './Button';
 import { Alien } from 'phosphor-react';
+
+const mockFunction = vi.fn();
 
 describe('Button', () => {
   test('should render the button', () => {
@@ -29,5 +31,13 @@ describe('Button', () => {
     expect(screen.getByText('Hello Alien Icon!')).toBeInTheDocument();
     const icon = screen.getByRole('button').querySelector('svg');
     expect(icon).not.toBeInTheDocument();
+  });
+
+  test('should call the handler function when clicked', () => {
+    render(
+      <Button icon={Alien} text="Hello Alien Icon!" handler={mockFunction} />
+    );
+    screen.getByRole('button').click();
+    expect(mockFunction).toHaveBeenCalled();
   });
 });
