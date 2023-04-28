@@ -5,9 +5,13 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useState } from 'react';
 import './TextArea.css';
 
+import { useMarkdownStore } from '../../store/store';
+
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);
-  const [markdown, setMarkdown] = useState('');
+
+  const markdown = useMarkdownStore((state) => state.markdown);
+  const setMarkdown = useMarkdownStore((state) => state.setMarkdown);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIsTyping(true);
@@ -28,7 +32,7 @@ export default function TextArea() {
         <ReactMarkdown
           children={markdown}
           components={{
-            code({ node, inline, className, children, ...props }) {
+            code({ inline, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || '');
               return !inline && match ? (
                 <SyntaxHighlighter
@@ -47,13 +51,16 @@ export default function TextArea() {
           }}
         />
       </div>
+
       <textarea
         data-testid="textarea"
         className="textArea"
         placeholder="Type here..."
         onChange={onChangeHandler}
       />
-      <p data-testid="typing">{isTyping ? ' Typing...' : 'Type it up!'}</p>
+      <p className="typingIndicator" data-testid="typing">
+        {isTyping ? ' Typing...' : ''}
+      </p>
     </div>
   );
 }

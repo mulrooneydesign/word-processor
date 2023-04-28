@@ -10,3 +10,11 @@
 .container {
   padding: var(--xs-spacing);
 }
+
+.typingIndicator {
+  display: block;
+  position: fixed;
+  bottom: var(--xs-spacing);
+  right: var(--lg-spacing);
+  opacity: 0.4;
+}
