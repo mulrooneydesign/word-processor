@@ -1,10 +1,20 @@
 import { create } from 'zustand';
 
-export const useMarkdownStore = create((set) => ({
+interface MarkdownState {
+  markdown: string;
+  setMarkdown: (value: string) => void;
+  fileName: string;
+  setFileName: (value: string) => void;
+  modalIsOpen: boolean;
+  toggleModalIsOpen: () => void;
+}
+
+export const useMarkdownStore = create<MarkdownState>((set) => ({
   markdown: '',
   setMarkdown: (value: string) => set(() => ({ markdown: value })),
   fileName: '',
   setFileName: (value: string) => set(() => ({ fileName: value })),
   modalIsOpen: false,
-  setModalIsOpen: (value: boolean) => set(() => ({ modalIsOpen: value })),
+  toggleModalIsOpen: () =>
+    set((state) => ({ modalIsOpen: !state.modalIsOpen })),
 }));

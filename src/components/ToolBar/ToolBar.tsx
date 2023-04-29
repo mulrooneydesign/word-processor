@@ -13,10 +13,12 @@ import { Modal } from '../Modal/Modal';
 import './ToolBar.css';
 
 export default function ToolBar() {
-  const setModalIsOpen = useMarkdownStore((state) => state.setModalIsOpen);
+  const toggleModalIsOpen = useMarkdownStore(
+    (state) => state.toggleModalIsOpen
+  );
 
   const showModalHandler = () => {
-    setModalIsOpen((value) => !value);
+    toggleModalIsOpen();
   };
 
   const markdown = useMarkdownStore((state) => state.markdown);
@@ -25,6 +27,7 @@ export default function ToolBar() {
 
   const saveFileHandler = () => {
     exportFile(markdown, fileName);
+    toggleModalIsOpen();
   };
 
   return (

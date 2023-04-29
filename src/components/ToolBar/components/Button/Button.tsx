@@ -4,7 +4,7 @@ import './Button.css';
 interface Props {
   icon?: React.FC;
   text?: string;
-  handler?: any;
+  handler?: () => void;
 }
 
 export default function Button({ icon, text, handler }: Props) {
