@@ -1,4 +1,3 @@
-import './App.css';
 import TextArea from './components/TextArea/TextArea';
 import ToolBar from './components/ToolBar/ToolBar';
 
