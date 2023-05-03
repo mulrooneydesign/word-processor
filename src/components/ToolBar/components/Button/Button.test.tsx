@@ -1,10 +1,9 @@
 import { describe, expect, it as test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-
 import Button from './Button';
 import { Alien } from 'phosphor-react';
 
-const mockFunction = vi.fn();
+const mockHandler = vi.fn();
 
 describe('Button', () => {
   test('should render the button', () => {
@@ -35,9 +34,9 @@ describe('Button', () => {
 
   test('should call the handler function when clicked', () => {
     render(
-      <Button icon={Alien} text="Hello Alien Icon!" handler={mockFunction} />
+      <Button icon={Alien} text="Hello Alien Icon!" handler={mockHandler} />
     );
-    screen.getByRole('button').click();
-    expect(mockFunction).toHaveBeenCalled();
+    screen.getByText('Hello Alien Icon!').click();
+    expect(mockHandler).toHaveBeenCalled();
   });
 });

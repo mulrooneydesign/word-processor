@@ -43,9 +43,9 @@ export default function ToolBar() {
             text="Save"
             handler={() => showModalHandler()}
           />
-          <Button icon={FolderNotchOpen} text="Load" />
-          <Button icon={ArrowUUpLeft} text="Undo" />
-          <Button icon={ArrowUUpRight} text="Redo" />
+          <Button icon={FolderNotchOpen} text="Load" disabled={true} />
+          <Button icon={ArrowUUpLeft} text="Undo" disabled={true} />
+          <Button icon={ArrowUUpRight} text="Redo" disabled={true} />
         </div>
       </div>
     </>
