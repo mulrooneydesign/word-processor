@@ -3,12 +3,10 @@ import ToolBar from './components/ToolBar/ToolBar';
 
 function App() {
   return (
-    <>
-      <div className="app">
-        <ToolBar />
-        <TextArea />
-      </div>
-    </>
+    <div className="app">
+      <ToolBar />
+      <TextArea />
+    </div>
   );
 }
 
