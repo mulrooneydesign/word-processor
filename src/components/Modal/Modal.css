@@ -2,13 +2,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
+    z-index: 4;
 }
 
 .modalContainer {
@@ -16,6 +16,8 @@
     margin: auto;
     padding: var(--xs-spacing);
     overflow: auto;
+    position: relative;
+
 }
 
 .modalContainer button {
@@ -28,4 +30,18 @@
     box-sizing: border-box;
     width: 100%;
     margin-top: var(--s-spacing)
+}
+
+.modalClose {
+    color: var(--light);
+    position: absolute;
+    right: var(--xs-spacing);
+    top: var(--xs-spacing);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.modalClose:hover {
+    cursor: pointer;
+    opacity: 0.3;
 }

@@ -1,3 +1,6 @@
+import { useCallback } from 'react';
+import { X } from 'phosphor-react';
+
 import Button from '../ToolBar/components/Button/Button';
 import './Modal.css';
 import { useMarkdownStore } from '../../store/store';
@@ -11,15 +14,47 @@ export function Modal({
 }) {
   const setFilename = useMarkdownStore((state) => state.setFileName);
 
+  const toggleModalIsOpen = useMarkdownStore(
+    (state) => state.toggleModalIsOpen
+  );
+
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilename(event.target.value);
   };
 
+  const closeHandler = () => {
+    toggleModalIsOpen();
+  };
+
+  const overlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event?.stopPropagation();
+    if (event.target === event.currentTarget) {
+      toggleModalIsOpen();
+    }
+  };
+
+  const callbackRef = useCallback((inputElement: HTMLInputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
   return (
-    <div className="modal" data-testid="modal">
+    <div className="modal" data-testid="modal" onClick={overlayClick}>
       <div className="modalContainer">
+        <div
+          data-testid="modalClose"
+          className="modalClose"
+          onClick={closeHandler}>
+          <X />
+        </div>
         <h2>{title}</h2>
-        <input type="text" onChange={onChangeHandler} />
+        <input
+          data-testid="modalInput"
+          type="text"
+          onChange={onChangeHandler}
+          ref={callbackRef}
+        />
         <Button text="Save" handler={handler} />
       </div>
     </div>
