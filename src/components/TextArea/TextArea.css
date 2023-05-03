@@ -5,6 +5,7 @@
   bottom: 0;
   height: 300px;
   margin: var(--xs-spacing);
+  padding: var(--xs-spacing);
 }
 
 .container {
@@ -16,5 +17,7 @@
   position: fixed;
   bottom: var(--xs-spacing);
   right: var(--lg-spacing);
-  opacity: 0.4;
+  opacity: 0.8;
+  color: var(--dark-gray);
+  z-index: 3;
 }

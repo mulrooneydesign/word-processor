@@ -1,0 +1,8 @@
+.charCounter {
+    position: fixed;
+    bottom: var(--xs-spacing);
+    left: var(--lg-spacing);
+    opacity: 1;
+    color: var(--dark-gray);
+    z-index: 3;
+}

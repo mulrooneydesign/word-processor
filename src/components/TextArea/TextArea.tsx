@@ -7,6 +7,8 @@ import './TextArea.css';
 
 import { useMarkdownStore } from '../../store/store';
 
+import CharCounter from '../CharCounter/CharCounter';
+
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);
 
@@ -61,6 +63,7 @@ export default function TextArea() {
       <p className="typingIndicator" data-testid="typing">
         {isTyping ? ' Typing...' : ''}
       </p>
+      <CharCounter charCount={markdown.length} />
     </div>
   );
 }
