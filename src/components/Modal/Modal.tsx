@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { X } from 'phosphor-react';
 
 import Button from '../ToolBar/components/Button/Button';
@@ -38,6 +38,28 @@ export function Modal({
       inputElement.focus();
     }
   }, []);
+
+  useLayoutEffect(() => {
+    const enterKeyPressHandler = (event: { key: string }) => {
+      if (event.key === 'Enter') {
+        handler();
+      }
+    };
+
+    const escKeyPressHandler = (event: { key: string }) => {
+      if (event.key === 'Escape') {
+        closeHandler();
+      }
+    };
+
+    document.addEventListener('keydown', enterKeyPressHandler);
+    document.addEventListener('keydown', escKeyPressHandler);
+
+    return () => {
+      document.removeEventListener('keydown', enterKeyPressHandler);
+      document.removeEventListener('keydown', escKeyPressHandler);
+    };
+  }, [handler, closeHandler]);
 
   return (
     <div className="modal" data-testid="modal" onClick={overlayClick}>

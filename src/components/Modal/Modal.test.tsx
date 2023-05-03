@@ -49,4 +49,13 @@ describe('Modal', () => {
     const modal = screen.getByTestId('modal');
     expect(within(modal).getByTestId('modalInput')).toHaveFocus();
   });
+
+  test('should call the handler function when enter is pressed', () => {
+    render(<Modal title="Modal Title" handler={mockhandler} />);
+    screen.getByTestId('modal').focus();
+    screen
+      .getByTestId('modal')
+      .dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    expect(mockhandler).toHaveBeenCalled();
+  });
 });
