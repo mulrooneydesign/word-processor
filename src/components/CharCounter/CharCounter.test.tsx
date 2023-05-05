@@ -10,7 +10,7 @@ describe('CharCounter', () => {
   });
 
   test('should render the charCount', () => {
-    render(<CharCounter charCount={100} />);
-    expect(screen.getByText('100')).toBeInTheDocument();
+    render(<CharCounter charCount={1001} />);
+    expect(screen.getByText(/1001/)).toBeInTheDocument();
   });
 });
