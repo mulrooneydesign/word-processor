@@ -7,10 +7,10 @@ import './TextArea.css';
 
 import { useMarkdownStore } from '../../store/store';
 
-import Minimizer from './components/Minimizer';
-import Counter from '../Counter/Counter';
+import Minimizer from '../Footer/Minimizer/Minimizer';
+import Counter from '../Footer/Counter/Counter';
 import Footer from '../Footer/Footer';
-import TypingIndicator from '../TypingIndicator/TypingIndicator';
+import TypingIndicator from '../Footer/TypingIndicator/TypingIndicator';
 
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);

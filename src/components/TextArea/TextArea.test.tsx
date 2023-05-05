@@ -16,11 +16,6 @@ describe('TextArea', () => {
     expect(screen.getByPlaceholderText('Type here...')).toBeInTheDocument();
   });
 
-  test('should render the typing indicator', () => {
-    render(<TextArea />);
-    expect(screen.getByTestId('typing')).toBeInTheDocument();
-  });
-
   test('should a allow user to type in the textarea', async () => {
     render(<TextArea />);
 

@@ -5,7 +5,7 @@ import {
   FolderNotchOpen,
 } from 'phosphor-react';
 
-import Button from './components/Button/Button';
+import Button from './Button/Button';
 import { useMarkdownStore } from '../../store/store';
 import { exportFile } from '../../helpers/exportFile';
 import { Modal } from '../Modal/Modal';
