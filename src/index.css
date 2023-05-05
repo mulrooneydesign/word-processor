@@ -15,6 +15,7 @@
   --tint: rgba(0, 0, 0, 0.1);
   --light-gray: #d4d4d4;
   --dark-gray: #a1a1a1;
+  --purple: #646cff;
 
   --xxs-spacing: 0.5rem;
   --xs-spacing: 1rem;
@@ -25,7 +26,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: --purple;
   text-decoration: inherit;
 }
 

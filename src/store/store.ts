@@ -7,6 +7,8 @@ interface MarkdownState {
   setFileName: (value: string) => void;
   modalIsOpen: boolean;
   toggleModalIsOpen: () => void;
+  textAreaIsOpen: boolean;
+  toggleTextAreaIsOpen: () => void;
 }
 
 export const useMarkdownStore = create<MarkdownState>((set) => ({
@@ -17,4 +19,7 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
   modalIsOpen: false,
   toggleModalIsOpen: () =>
     set((state) => ({ modalIsOpen: !state.modalIsOpen })),
+  textAreaIsOpen: true,
+  toggleTextAreaIsOpen: () =>
+    set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
 }));

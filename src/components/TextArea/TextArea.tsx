@@ -7,6 +7,7 @@ import './TextArea.css';
 
 import { useMarkdownStore } from '../../store/store';
 
+import Minimizer from './components/Minimizer';
 import CharCounter from '../CharCounter/CharCounter';
 
 export default function TextArea() {
@@ -14,6 +15,8 @@ export default function TextArea() {
 
   const markdown = useMarkdownStore((state) => state.markdown);
   const setMarkdown = useMarkdownStore((state) => state.setMarkdown);
+
+  const textAreaIsOpen = useMarkdownStore((state) => state.textAreaIsOpen);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIsTyping(true);
@@ -53,13 +56,13 @@ export default function TextArea() {
           }}
         />
       </div>
-
       <textarea
         data-testid="textarea"
-        className="textArea"
+        className={textAreaIsOpen ? 'textArea' : 'textArea textAreaHidden'}
         placeholder="Type here..."
         onChange={onChangeHandler}
       />
+      <Minimizer />
       <p className="typingIndicator" data-testid="typing">
         {isTyping ? ' Typing...' : ''}
       </p>

@@ -22,9 +22,9 @@ export function Modal({
     setFilename(event.target.value);
   };
 
-  const closeHandler = () => {
+  const closeHandler = useCallback(() => {
     toggleModalIsOpen();
-  };
+  }, [toggleModalIsOpen]);
 
   const overlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event?.stopPropagation();
@@ -33,11 +33,11 @@ export function Modal({
     }
   };
 
-  const callbackRef = useCallback((inputElement: HTMLInputElement) => {
+  const callbackRef = (inputElement: HTMLInputElement) => {
     if (inputElement) {
       inputElement.focus();
     }
-  }, []);
+  };
 
   useLayoutEffect(() => {
     const enterKeyPressHandler = (event: { key: string }) => {

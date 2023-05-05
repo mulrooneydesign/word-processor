@@ -1,11 +1,24 @@
 .textArea {
-  width: calc(100% - var(--lg-spacing));
   position: fixed;
   left: 0;
   bottom: 0;
+  right: 0;
   height: 300px;
-  margin: var(--xs-spacing);
-  padding: var(--xs-spacing);
+  width: 100%;
+  padding: var(--s-spacing);
+  background-color: transparent;
+  outline-offset: 0;
+  outline: transparent;
+  border: none;
+  background-color: var(--light-gray);
+  font-size: 1.25rem;
+  overflow-y: scroll;
+  resize: vertical;
+  height: 300px;
+}
+
+.textAreaHidden {
+  display: none;
 }
 
 .container {
@@ -15,8 +28,8 @@
 .typingIndicator {
   display: block;
   position: fixed;
-  bottom: var(--xs-spacing);
-  right: var(--lg-spacing);
+  bottom: 0;
+  left: calc(var(--xs-spacing) + 15%);
   opacity: 0.8;
   color: var(--dark-gray);
   z-index: 3;
