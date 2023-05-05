@@ -1,9 +1,11 @@
 .minimizer {
-    position: fixed;
-    display: block;
-    right: var(--xs-spacing);
-    bottom: var(--xxs-spacing);
     font-size: 1.5rem;
+}
+
+.minimizer svg {
+    padding-top: var(--xs-spacing);
+    float: right;
+    padding-right: var(--xs-spacing);
 }
 
 .minimizer:hover {

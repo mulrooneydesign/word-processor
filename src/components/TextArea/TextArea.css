@@ -20,7 +20,3 @@
 .textAreaHidden {
   display: none;
 }
-
-.container {
-  padding: var(--xs-spacing);
-}

@@ -70,8 +70,8 @@ export default function TextArea() {
       <Footer>
         <Counter title="Characters: " count={markdown.length} />
         <Counter title="Words: " count={markdown.split(' ').length} />
-        <Minimizer />
         <TypingIndicator isTyping={isTyping} />
+        <Minimizer />
       </Footer>
     </>
   );
