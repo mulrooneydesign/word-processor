@@ -24,13 +24,3 @@
 .container {
   padding: var(--xs-spacing);
 }
-
-.typingIndicator {
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: calc(var(--xs-spacing) + 15%);
-  opacity: 0.8;
-  color: var(--dark-gray);
-  z-index: 3;
-}

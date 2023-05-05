@@ -8,7 +8,9 @@ import './TextArea.css';
 import { useMarkdownStore } from '../../store/store';
 
 import Minimizer from './components/Minimizer';
-import CharCounter from '../CharCounter/CharCounter';
+import Counter from '../Counter/Counter';
+import Footer from '../Footer/Footer';
+import TypingIndicator from '../TypingIndicator/TypingIndicator';
 
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);
@@ -32,41 +34,45 @@ export default function TextArea() {
   };
 
   return (
-    <div className="container">
-      <div data-testid="markDownContainer">
-        <ReactMarkdown
-          children={markdown}
-          components={{
-            code({ inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || '');
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  {...props}
-                  children={String(children).replace(/\n$/, '')}
-                  style={vscDarkPlus}
-                  language={match[1]}
-                  PreTag="div"
-                />
-              ) : (
-                <code {...props} className={className}>
-                  {children}
-                </code>
-              );
-            },
-          }}
+    <>
+      <div className="container">
+        <div data-testid="markDownContainer">
+          <ReactMarkdown
+            children={markdown}
+            components={{
+              code({ inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, '')}
+                    style={vscDarkPlus}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          />
+        </div>
+        <textarea
+          data-testid="textarea"
+          className={textAreaIsOpen ? 'textArea' : 'textArea textAreaHidden'}
+          placeholder="Type here..."
+          onChange={onChangeHandler}
         />
       </div>
-      <textarea
-        data-testid="textarea"
-        className={textAreaIsOpen ? 'textArea' : 'textArea textAreaHidden'}
-        placeholder="Type here..."
-        onChange={onChangeHandler}
-      />
-      <Minimizer />
-      <p className="typingIndicator" data-testid="typing">
-        {isTyping ? ' Typing...' : ''}
-      </p>
-      <CharCounter charCount={markdown.length} />
-    </div>
+
+      <Footer>
+        <Counter title="Characters: " count={markdown.length} />
+        <Counter title="Words: " count={markdown.split(' ').length} />
+        <Minimizer />
+        <TypingIndicator isTyping={isTyping} />
+      </Footer>
+    </>
   );
 }

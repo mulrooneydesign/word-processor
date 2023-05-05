@@ -1,0 +1,7 @@
+.typingHidden {
+    opacity: 0;
+}
+
+.typing {
+    color: var(--dark-gray);
+}

@@ -1,5 +1,5 @@
-.charCounter {
-    position: fixed;
+.counter {
+    position: relative;
     bottom: 0;
     left: var(--xs-spacing);
     opacity: 1;

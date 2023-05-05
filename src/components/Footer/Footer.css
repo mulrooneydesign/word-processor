@@ -1,0 +1,8 @@
+.footer {
+    display: grid;
+    width: 100%;
+    background-color: var(--very-dark);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: fixed;
+    bottom: 0;
+}
