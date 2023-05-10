@@ -16,7 +16,7 @@ const TestChildComponent = () => {
 };
 
 describe('Tooltip', () => {
-  it('should render the tooltip with children', () => {
+  test('should render the tooltip with children', () => {
     render(
       <Tooltip text="Hover text">
         <TestChildComponent />
@@ -25,7 +25,7 @@ describe('Tooltip', () => {
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('should render the tooltip with text', () => {
+  test('should render the tooltip with text', () => {
     render(<Tooltip text="Hover text">Hover me</Tooltip>);
     expect(screen.getByText('Hover me')).toBeInTheDocument();
 
@@ -33,7 +33,7 @@ describe('Tooltip', () => {
     expect(screen.getByText('Hover text')).toBeInTheDocument();
   });
 
-  it('should render the tooltip with text after on mouseEnter', () => {
+  test('should render the tooltip with text after on mouseEnter', () => {
     render(<Tooltip text="Hover text">Hover me</Tooltip>);
     expect(screen.getByText('Hover me')).toBeInTheDocument();
 
@@ -41,7 +41,7 @@ describe('Tooltip', () => {
     expect(screen.getByText('Hover text')).toBeInTheDocument();
   });
 
-  it('should not render the tooltip with text after on mouseLeave', () => {
+  test('should not render the tooltip with text after on mouseLeave', () => {
     render(<Tooltip text="Hover text">Hover me</Tooltip>);
 
     fireEvent.mouseEnter(screen.getByText('Hover me'));
