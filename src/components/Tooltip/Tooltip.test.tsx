@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { describe, expect, it as test } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
