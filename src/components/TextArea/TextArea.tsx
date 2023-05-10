@@ -12,6 +12,8 @@ import Counter from '../Footer/Counter/Counter';
 import Footer from '../Footer/Footer';
 import TypingIndicator from '../Footer/TypingIndicator/TypingIndicator';
 
+import Tooltip from '../Tooltip/Tooltip';
+
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);
 
@@ -35,7 +37,7 @@ export default function TextArea() {
 
   return (
     <>
-      <div className="container">
+      <div className="markDownContainer">
         <div data-testid="markDownContainer">
           <ReactMarkdown
             children={markdown}
@@ -68,10 +70,18 @@ export default function TextArea() {
       </div>
 
       <Footer>
-        <Counter title="Characters: " count={markdown.length} />
-        <Counter title="Words: " count={markdown.split(' ').length} />
+        <Tooltip text="Character count">
+          <Counter title="Characters: " count={markdown.length} />
+        </Tooltip>
+        <Tooltip text="Word count">
+          <Counter title="Words: " count={markdown.split(' ').length} />
+        </Tooltip>
+
         <TypingIndicator isTyping={isTyping} />
-        <Minimizer />
+
+        <Tooltip text="Minimize" className="tooltipMinimize">
+          <Minimizer />
+        </Tooltip>
       </Footer>
     </>
   );

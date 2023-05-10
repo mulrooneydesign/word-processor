@@ -2,6 +2,10 @@
     font-size: 1.5rem;
 }
 
+.tooltipMinimize {
+    flex-direction: column;
+}
+
 .minimizer svg {
     padding-top: var(--xs-spacing);
     float: right;

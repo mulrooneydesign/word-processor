@@ -11,6 +11,7 @@ import { exportFile } from '../../helpers/exportFile';
 import { Modal } from '../Modal/Modal';
 
 import './ToolBar.css';
+import Tootip from '../Tooltip/Tooltip';
 
 export default function ToolBar() {
   const toggleModalIsOpen = useMarkdownStore(
@@ -38,11 +39,13 @@ export default function ToolBar() {
       <div className="toolBar" data-testid="toolBar">
         <h1 className="title">Markdown</h1>
         <div className="buttonGroup">
-          <Button
-            icon={FloppyDisk}
-            text="Save"
-            handler={() => showModalHandler()}
-          />
+          <Tootip text="Save your file to disk">
+            <Button
+              icon={FloppyDisk}
+              text="Save"
+              handler={() => showModalHandler()}
+            />
+          </Tootip>
           <Button icon={FolderNotchOpen} text="Load" disabled={true} />
           <Button icon={ArrowUUpLeft} text="Undo" disabled={true} />
           <Button icon={ArrowUUpRight} text="Redo" disabled={true} />

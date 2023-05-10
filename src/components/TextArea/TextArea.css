@@ -20,3 +20,7 @@
 .textAreaHidden {
   display: none;
 }
+
+.markDownContainer {
+  padding: var(--s-spacing);
+}
