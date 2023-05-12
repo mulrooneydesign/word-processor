@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { X } from 'phosphor-react';
 
 import Button from '../ToolBar/Button/Button';
@@ -7,12 +7,16 @@ import { useMarkdownStore } from '../../store/store';
 
 export function Modal({
   title,
+  subtitle,
   handler,
 }: {
   title: string;
+  subtitle?: string;
   handler: () => void;
 }) {
   const setFilename = useMarkdownStore((state) => state.setFileName);
+
+  const fileName = useMarkdownStore((state) => state.fileName);
 
   const toggleModalIsOpen = useMarkdownStore(
     (state) => state.toggleModalIsOpen
@@ -23,8 +27,9 @@ export function Modal({
   };
 
   const closeHandler = useCallback(() => {
+    setFilename('');
     toggleModalIsOpen();
-  }, [toggleModalIsOpen]);
+  }, [toggleModalIsOpen, setFilename]);
 
   const overlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event?.stopPropagation();
@@ -61,6 +66,16 @@ export function Modal({
     };
   }, [handler, closeHandler]);
 
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (fileName.length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [fileName]);
+
   return (
     <div className="modal" data-testid="modal" onClick={overlayClick}>
       <div className="modalContainer">
@@ -71,13 +86,15 @@ export function Modal({
           <X />
         </div>
         <h2>{title}</h2>
+        <p>{subtitle}</p>
         <input
           data-testid="modalInput"
           type="text"
           onChange={onChangeHandler}
           ref={callbackRef}
+          required
         />
-        <Button text="Save" handler={handler} />
+        <Button text="Save" handler={handler} disabled={disabled} />
       </div>
     </div>
   );

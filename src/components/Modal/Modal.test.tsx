@@ -1,5 +1,5 @@
 import { describe, expect, it as test, vi } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, fireEvent } from '@testing-library/react';
 
 import { Modal } from './Modal';
 
@@ -21,8 +21,23 @@ describe('Modal', () => {
     expect(screen.getByText('Modal Title')).toBeInTheDocument();
   });
 
+  test('should render the modal subtitle title', () => {
+    render(
+      <Modal
+        title="Modal Title"
+        subtitle="Modal subtitle"
+        handler={mockhandler}
+      />
+    );
+    expect(screen.getByText('Modal subtitle')).toBeInTheDocument();
+  });
+
   test('should call the handler function when save is clicked', () => {
     render(<Modal title="Modal Title" handler={mockhandler} />);
+
+    const input = screen.getByTestId('modalInput') as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'test' } });
+
     screen.getByText('Save').click();
     expect(mockhandler).toHaveBeenCalled();
   });
