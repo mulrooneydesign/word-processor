@@ -1,14 +1,16 @@
 .tooltip {
+    display: flex;
+}
+
+.tooltipText {
+    position: fixed;
     background-color: #444;
     color: white;
     font-size: 90%;
     padding: 4px 8px;
     border-radius: 4px;
     box-sizing: border-box;
+    text-align: center;
     width: max-content;
-    max-width: calc(100vw - 10px);
-}
-
-.tooltip-trigger {
-    display: flex;
+    z-index: 100;
 }
