@@ -1,5 +1,6 @@
 .minimizer {
     font-size: 1.5rem;
+    margin-left: auto;
 }
 
 .tooltipMinimize {
@@ -8,7 +9,6 @@
 
 .minimizer svg {
     padding-top: var(--xs-spacing);
-    float: right;
     padding-right: var(--xs-spacing);
 }
 
