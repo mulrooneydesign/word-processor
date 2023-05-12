@@ -34,7 +34,11 @@ export default function ToolBar() {
   return (
     <>
       {modalIsOpen && (
-        <Modal title="Download your file" handler={saveFileHandler} />
+        <Modal
+          title="Download your file"
+          subtitle="Please enter a file name"
+          handler={saveFileHandler}
+        />
       )}
       <div className="toolBar" data-testid="toolBar">
         <h1 className="title">Markdown</h1>
