@@ -1,10 +1,9 @@
 .toolBar {
-  display: flex;
-
-  padding: var(--xs-spacing);
   background: var(--tint);
-  width: 100%;
   box-sizing: border-box;
+  display: flex;
+  padding: var(--xs-spacing);
+  width: 100%;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -22,12 +21,14 @@
   margin-left: auto;
   flex-direction: column;
   position: fixed;
-  top: 100px;
-  background: rgb(45 45 45 / 95%);
+  top: 82px;
+  background: var(--tint-dark);
   padding: var(--xs-spacing);
   width: calc(100% - var(--md-spacing));
   box-sizing: border-box;
   margin: 0 auto;
+  border-radius: 6px;
+  margin-top: var(--xs-spacing);
 }
 
 .menuItems {
@@ -41,6 +42,18 @@
   width: 100%;
 }
 
+.menuItems .button {
+  width: 100%;
+  gap: var(--xxs-spacing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showMenuButton button {
+  background-color: transparent;
+}
+
 
 /* show menu button only on mobile devices */
 @media (min-width: 768px) {
@@ -52,7 +65,10 @@
 
   .showMenuButton {
     display: none;
+    align-self: center;
+    font-size: 2rem;
   }
+
 
   .buttonGroup {
     top: unset;
@@ -64,6 +80,8 @@
     padding: 0;
     margin: auto;
     margin-right: 0;
+    margin-top: auto;
+    border-radius: 0;
   }
 
   .menuItems {
