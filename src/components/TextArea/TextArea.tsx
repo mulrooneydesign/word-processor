@@ -14,6 +14,8 @@ import TypingIndicator from '../Footer/TypingIndicator/TypingIndicator';
 
 import Tooltip from '../Tooltip/Tooltip';
 
+import { Position } from '../Tooltip/Tooltip';
+
 export default function TextArea() {
   const [isTyping, setIsTyping] = useState(false);
 
@@ -70,16 +72,14 @@ export default function TextArea() {
       </div>
 
       <Footer>
-        <Tooltip text="Character count">
+        <Tooltip text="Character count" position={Position.TOP}>
           <Counter title="Characters: " count={markdown.length} />
         </Tooltip>
-        <Tooltip text="Word count">
+        <Tooltip text="Word count" position={Position.TOP}>
           <Counter title="Words: " count={markdown.split(' ').length} />
         </Tooltip>
-
         <TypingIndicator isTyping={isTyping} />
-
-        <Tooltip text="Minimize" className="tooltipMinimize">
+        <Tooltip text="Minimize" position={Position.TOP}>
           <Minimizer />
         </Tooltip>
       </Footer>

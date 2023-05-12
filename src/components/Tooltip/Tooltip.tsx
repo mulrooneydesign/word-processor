@@ -1,177 +1,85 @@
-// Tooltip component largely based on: https://codesandbox.io/s/xenodochial-grass-js3bo9?file=/src/styles.css
-import React from 'react';
-
-import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  useHover,
-  useFocus,
-  useDismiss,
-  useRole,
-  useInteractions,
-  useMergeRefs,
-  FloatingPortal,
-} from '@floating-ui/react';
-import type { Placement } from '@floating-ui/react';
-
+import { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import './Tooltip.css';
 
-interface TooltipOptions {
-  initialOpen?: boolean;
-  placement?: Placement;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+export enum Position {
+  TOP = 'top',
+  BOTTOM = 'bottom',
 }
 
-export function useTooltip({
-  initialOpen = false,
-  placement = 'top',
-  open: controlledOpen,
-  onOpenChange: setControlledOpen,
-}: TooltipOptions = {}) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
-
-  const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;
-
-  const data = useFloating({
-    placement,
-    open,
-    onOpenChange: setOpen,
-    whileElementsMounted: autoUpdate,
-    middleware: [
-      offset(6),
-      flip({
-        fallbackAxisSideDirection: 'start',
-        padding: 5,
-      }),
-      shift({ padding: 5 }),
-    ],
-  });
-
-  const context = data.context;
-
-  const hover = useHover(context, {
-    move: false,
-    enabled: controlledOpen == null,
-  });
-  const focus = useFocus(context, {
-    enabled: controlledOpen == null,
-  });
-  const dismiss = useDismiss(context);
-  const role = useRole(context, { role: 'tooltip' });
-
-  const interactions = useInteractions([hover, focus, dismiss, role]);
-
-  return React.useMemo(
-    () => ({
-      open,
-      setOpen,
-      ...interactions,
-      ...data,
-    }),
-    [open, setOpen, interactions, data]
-  );
+interface TooltipProps {
+  text: string;
+  children: React.ReactNode;
+  position?: Position;
 }
 
-type ContextType = ReturnType<typeof useTooltip> | null;
-
-const TooltipContext = React.createContext<ContextType>(null);
-
-export const useTooltipContext = () => {
-  const context = React.useContext(TooltipContext);
-
-  if (context == null) {
-    throw new Error('Tooltip components must be wrapped with <Tooltip />');
-  }
-
-  return context;
-};
-
-function TooltipContainer({
+export default function Tooltip({
+  text,
   children,
-  ...options
-}: { children: React.ReactNode } & TooltipOptions) {
-  const tooltip = useTooltip(options);
-  return (
-    <TooltipContext.Provider value={tooltip}>
-      {children}
-    </TooltipContext.Provider>
-  );
-}
+  position = Position.BOTTOM,
+}: TooltipProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const toolTipTextRef = useRef<HTMLDivElement | null>(null);
 
-const TooltipTrigger = React.forwardRef<
-  HTMLElement,
-  React.HTMLProps<HTMLElement> & { asChild?: boolean; className?: string }
->(function TooltipTrigger(
-  { children, asChild = false, className, ...props },
-  propRef
-) {
-  const context = useTooltipContext();
-  const childrenRef = (children as any).ref;
-  const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
+  const [child, setChild] = useState({ x: 0, y: 0, height: 0, width: 0 });
+  const [visible, setVisible] = useState(false);
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children,
-      context.getReferenceProps({
-        ref,
-        ...props,
-        ...children.props,
-        'data-state': context.open ? 'open' : 'closed',
-      })
-    );
-  }
+  useEffect(() => {
+    if (ref.current === null) return;
+
+    const firstChild = ref.current.firstChild;
+
+    if (!(firstChild instanceof HTMLElement)) return;
+
+    const height = firstChild.offsetHeight;
+    const width = firstChild.offsetWidth;
+
+    const x = firstChild.getBoundingClientRect().x;
+    const y = firstChild.getBoundingClientRect().y;
+
+    setChild({ x, y, height, width });
+
+    return () => {
+      setChild({ x: 0, y: 0, height: 0, width: 0 });
+    };
+  }, []);
+
+  const onMouseEnterHandler = () => {
+    setVisible((state) => !state);
+  };
+
+  useLayoutEffect(() => {
+    const { x, y, height, width } = child;
+
+    if (toolTipTextRef.current !== null) {
+      const OFFSET = 10;
+
+      const { offsetWidth } = toolTipTextRef.current;
+
+      if (position === Position.BOTTOM) {
+        toolTipTextRef.current.style.top = `${y + height + OFFSET}px`;
+        toolTipTextRef.current.style.left = `${x - offsetWidth / 4}px`;
+      }
+
+      if (position === Position.TOP) {
+        toolTipTextRef.current.style.top = `${y - height}px`;
+        toolTipTextRef.current.style.left = `${x - offsetWidth / 4}px`;
+      }
+    }
+  }, [child, position, visible]);
 
   return (
     <div
       ref={ref}
-      className={`tooltip-trigger ${className ? className : ''}`}
-      data-state={context.open ? 'open' : 'closed'}
-      {...context.getReferenceProps(props)}>
+      className="tooltip"
+      data-testid="tooltip"
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseEnterHandler}>
       {children}
+      {visible && (
+        <div ref={toolTipTextRef} className="tooltipText">
+          {text}
+        </div>
+      )}
     </div>
-  );
-});
-
-const TooltipContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
->(function TooltipContent(props, propRef) {
-  const context = useTooltipContext();
-  const ref = useMergeRefs([context.refs.setFloating, propRef]);
-
-  if (!context.open) return null;
-
-  return (
-    <FloatingPortal>
-      <div
-        style={context.floatingStyles}
-        ref={ref}
-        {...context.getFloatingProps(props)}
-      />
-    </FloatingPortal>
-  );
-});
-
-export default function Tooltip({
-  children,
-  text,
-  className,
-}: {
-  children: React.ReactNode;
-  text: string;
-  className?: string;
-}) {
-  return (
-    <TooltipContainer>
-      <TooltipTrigger className={`${className ? className : ''}`}>
-        {children}
-      </TooltipTrigger>
-      <TooltipContent className="tooltip">{text}</TooltipContent>
-    </TooltipContainer>
   );
 }
