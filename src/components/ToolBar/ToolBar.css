@@ -1,11 +1,12 @@
 .toolBar {
   display: flex;
-  gap: var(--xxs-spacing);
+
   padding: var(--xs-spacing);
   background: var(--tint);
   width: 100%;
   box-sizing: border-box;
-
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .title {
@@ -19,4 +20,54 @@
   display: flex;
   gap: 0.5rem;
   margin-left: auto;
+  flex-direction: column;
+  position: fixed;
+  top: 100px;
+  background: rgb(45 45 45 / 95%);
+  padding: var(--xs-spacing);
+  width: calc(100% - var(--md-spacing));
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.menuItems .tooltip .button {
+  width: 100%;
+}
+
+
+/* show menu button only on mobile devices */
+@media (min-width: 768px) {
+
+  .toolBar {
+    justify-content: flex-start;
+
+  }
+
+  .showMenuButton {
+    display: none;
+  }
+
+  .buttonGroup {
+    top: unset;
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    width: unset;
+    background-color: transparent;
+    padding: 0;
+    margin: auto;
+    margin-right: 0;
+  }
+
+  .menuItems {
+    flex-direction: row;
+  }
+
 }

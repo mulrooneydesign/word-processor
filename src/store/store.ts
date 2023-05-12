@@ -9,6 +9,8 @@ interface MarkdownState {
   toggleModalIsOpen: () => void;
   textAreaIsOpen: boolean;
   toggleTextAreaIsOpen: () => void;
+  menuIsOpen: boolean;
+  toggleMenuIsOpen: () => void;
 }
 
 export const useMarkdownStore = create<MarkdownState>((set) => ({
@@ -22,4 +24,6 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
   textAreaIsOpen: true,
   toggleTextAreaIsOpen: () =>
     set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
+  menuIsOpen: true,
+  toggleMenuIsOpen: () => set((state) => ({ menuIsOpen: !state.menuIsOpen })),
 }));
