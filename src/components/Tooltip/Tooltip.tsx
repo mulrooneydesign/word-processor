@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import adjustElementPositionToWindow from '../../utils/adjustElementPositionToWindow';
 import './Tooltip.css';
 
 export enum Position {
@@ -20,8 +21,19 @@ export default function Tooltip({
   const ref = useRef<HTMLDivElement | null>(null);
   const toolTipTextRef = useRef<HTMLDivElement | null>(null);
 
-  const [child, setChild] = useState({ x: 0, y: 0, height: 0, width: 0 });
+  const [child, setChild] = useState({ x: 0, y: 0, height: 0 });
   const [visible, setVisible] = useState(false);
+  const [trigger, setTrigger] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setTrigger((state) => !state);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (ref.current === null) return;
@@ -31,24 +43,23 @@ export default function Tooltip({
     if (!(firstChild instanceof HTMLElement)) return;
 
     const height = firstChild.offsetHeight;
-    const width = firstChild.offsetWidth;
 
     const x = firstChild.getBoundingClientRect().x;
     const y = firstChild.getBoundingClientRect().y;
 
-    setChild({ x, y, height, width });
+    setChild({ x, y, height });
 
     return () => {
-      setChild({ x: 0, y: 0, height: 0, width: 0 });
+      setChild({ x: 0, y: 0, height: 0 });
     };
-  }, []);
+  }, [trigger]);
 
   const onMouseEnterHandler = () => {
     setVisible((state) => !state);
   };
 
-  useLayoutEffect(() => {
-    const { x, y, height, width } = child;
+  useEffect(() => {
+    const { x, y, height } = child;
 
     if (toolTipTextRef.current !== null) {
       const OFFSET = 10;
@@ -58,14 +69,17 @@ export default function Tooltip({
       if (position === Position.BOTTOM) {
         toolTipTextRef.current.style.top = `${y + height + OFFSET}px`;
         toolTipTextRef.current.style.left = `${x - offsetWidth / 4}px`;
+
+        adjustElementPositionToWindow(toolTipTextRef.current, OFFSET);
       }
 
       if (position === Position.TOP) {
-        toolTipTextRef.current.style.top = `${y - height}px`;
+        toolTipTextRef.current.style.top = `${y - height / 2 - OFFSET}px`;
         toolTipTextRef.current.style.left = `${x - offsetWidth / 4}px`;
+        adjustElementPositionToWindow(toolTipTextRef.current, OFFSET);
       }
     }
-  }, [child, position, visible]);
+  }, [child, position, visible, trigger]);
 
   return (
     <div
