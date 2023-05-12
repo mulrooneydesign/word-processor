@@ -24,6 +24,6 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
   textAreaIsOpen: true,
   toggleTextAreaIsOpen: () =>
     set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
-  menuIsOpen: true,
+  menuIsOpen: false,
   toggleMenuIsOpen: () => set((state) => ({ menuIsOpen: !state.menuIsOpen })),
 }));
