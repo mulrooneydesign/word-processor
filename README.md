@@ -26,4 +26,4 @@ It is using React, Typescript, and vitest for unit testing. Zustand for state ma
 
 ## Screenshot
 
-![image](https://user-images.githubusercontent.com/43812236/233854310-603347f0-18e6-4bee-9d42-e24b89c84f0a.png)
+![image](https://github.com/mulrooneydesign/word-processor/assets/43812236/f66e2fdf-eeb6-4f58-b6ad-2289297cba22)
