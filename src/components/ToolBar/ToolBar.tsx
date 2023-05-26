@@ -5,6 +5,7 @@ import {
   FolderNotchOpen,
   List,
   X,
+  UserPlus,
 } from 'phosphor-react';
 
 import Button from './Button/Button';
@@ -15,6 +16,9 @@ import { Modal } from '../Modal/Modal';
 import './ToolBar.css';
 import Tootip from '../Tooltip/Tooltip';
 import { useEffect } from 'react';
+import { useCurrentRoute } from '../../helpers/useCurrentRoute';
+
+import { Link } from 'react-router-dom';
 
 export default function ToolBar() {
   const toggleModalIsOpen = useMarkdownStore(
@@ -70,6 +74,8 @@ export default function ToolBar() {
     window.addEventListener('resize', checkWindowSize);
   }, []);
 
+  const currentRoute = useCurrentRoute();
+
   return (
     <>
       {modalIsOpen && (
@@ -81,7 +87,9 @@ export default function ToolBar() {
       )}
 
       <div className="toolBar" data-testid="toolBar">
-        <h1 className="title">Markdown</h1>
+        <h1 className="title">
+          <Link to="/">Markdown</Link>
+        </h1>
         <ShowMenuButton />
         {menuIsOpen && (
           <div className="buttonGroup">
@@ -91,11 +99,20 @@ export default function ToolBar() {
                   icon={FloppyDisk}
                   text="Save"
                   handler={() => showModalHandler()}
+                  disabled={currentRoute !== '/'}
                 />
               </Tootip>
-              <Button icon={FolderNotchOpen} text="Load" disabled={true} />
-              <Button icon={ArrowUUpLeft} text="Undo" disabled={true} />
-              <Button icon={ArrowUUpRight} text="Redo" disabled={true} />
+              <Button icon={FolderNotchOpen} text="Load" disabled />
+              <Button icon={ArrowUUpLeft} text="Undo" disabled />
+              <Button icon={ArrowUUpRight} text="Redo" disabled />
+              <Tootip text="Register a new user">
+                <Button
+                  icon={UserPlus}
+                  text="Sign up"
+                  route="/sign-up"
+                  disabled={currentRoute === '/sign-up'}
+                />
+              </Tootip>
             </div>
           </div>
         )}

@@ -1,0 +1,6 @@
+.input {
+    background-color: none;
+    font-size: 1.25em;
+    border-radius: 0;
+    padding: var(--xxs-spacing);
+}

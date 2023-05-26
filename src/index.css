@@ -24,6 +24,8 @@
   --s-spacing: 1.5rem;
   --md-spacing: 2rem;
   --lg-spacing: 2.5rem;
+
+  --border-radius: 4px;
 }
 
 a {
