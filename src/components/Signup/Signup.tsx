@@ -47,7 +47,7 @@ function SignupForm() {
   };
 
   return (
-    <form onSubmit={signupHandler} className="signupForm">
+    <form onSubmit={signupHandler} className="signupForm" data-testid="signup">
       <h1>Sign up today!</h1>
       <p>Enter your details below to sign up.</p>
       <Input
@@ -69,7 +69,7 @@ function SignupForm() {
         errorText={errorText}
         handler={closeErrorHandler}
       />
-      <Input type="submit" value="Sign up" />
+      <Input type="submit" value="Sign up!" />
     </form>
   );
 }
@@ -84,7 +84,7 @@ const ErrorMessage = ({
   handler?: () => void;
 }) => {
   return isError ? (
-    <p className="error">
+    <p className="error" data-testid="error">
       {errorText}
       <span onClick={handler} className="closeError">
         <X />
