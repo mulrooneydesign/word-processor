@@ -6,6 +6,7 @@ import {
   List,
   X,
   UserPlus,
+  UserMinus,
 } from 'phosphor-react';
 
 import Button from './Button/Button';
@@ -33,6 +34,7 @@ export default function ToolBar() {
   const fileName = useMarkdownStore((state) => state.fileName);
   const modalIsOpen = useMarkdownStore((state) => state.modalIsOpen);
   const menuIsOpen = useMarkdownStore((state) => state.menuIsOpen);
+  const isLoggedIn = useMarkdownStore((state) => state.isLoggedIn);
 
   const saveFileHandler = () => {
     exportFile(markdown, fileName);
@@ -105,14 +107,27 @@ export default function ToolBar() {
               <Button icon={FolderNotchOpen} text="Load" disabled />
               <Button icon={ArrowUUpLeft} text="Undo" disabled />
               <Button icon={ArrowUUpRight} text="Redo" disabled />
-              <Tootip text="Register a new user">
-                <Button
-                  icon={UserPlus}
-                  text="Sign up"
-                  route="/sign-up"
-                  disabled={currentRoute === '/sign-up'}
-                />
-              </Tootip>
+
+              {!isLoggedIn && (
+                <Tootip text="Register a new user">
+                  <Button
+                    icon={UserPlus}
+                    text="Sign up"
+                    route="/sign-up"
+                    disabled={currentRoute === '/sign-up'}
+                  />
+                </Tootip>
+              )}
+              {isLoggedIn && (
+                <Tootip text="Logout">
+                  <Button
+                    icon={UserMinus}
+                    text="Logout"
+                    route="/logout"
+                    disabled={currentRoute === '/logout'}
+                  />
+                </Tootip>
+              )}
             </div>
           </div>
         )}

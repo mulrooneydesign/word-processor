@@ -11,6 +11,8 @@ interface MarkdownState {
   toggleTextAreaIsOpen: () => void;
   menuIsOpen: boolean;
   toggleMenuIsOpen: () => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (value: boolean) => void;
 }
 
 export const useMarkdownStore = create<MarkdownState>((set) => ({
@@ -26,4 +28,6 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
     set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
   menuIsOpen: true,
   toggleMenuIsOpen: () => set((state) => ({ menuIsOpen: !state.menuIsOpen })),
+  isLoggedIn: false,
+  setIsLoggedIn: (value: boolean) => set(() => ({ isLoggedIn: value })),
 }));

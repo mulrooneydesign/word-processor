@@ -2,13 +2,12 @@ import { describe, expect, it as test } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-import App from '../../App';
+import TextArea from './TextArea';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <TextArea />,
   },
 ]);
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { db } from '../../api/db';
 import ToolBar from '../ToolBar/ToolBar';
-import Input from './Input/Input';
+import Input from '../Input/Input';
 import { X } from 'phosphor-react';
+import { Link } from 'react-router-dom';
 import './Signup.css';
 
 function SignupForm() {
@@ -10,18 +11,26 @@ function SignupForm() {
   const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const [pending, setPending] = useState(false);
 
   const signupHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
+    if (pending) return;
+
+    setPending(true);
     const { error } = await db.auth.signUp({
       email,
       password,
     });
 
     if (error) {
+      setPending(false);
       setIsError(true);
       setErrorText(error.message);
+      return;
     }
+    setPending(false);
     return;
   };
 
@@ -48,7 +57,7 @@ function SignupForm() {
 
   return (
     <form onSubmit={signupHandler} className="signupForm" data-testid="signup">
-      <h1>Sign up today!</h1>
+      <h1>Sign up</h1>
       <p>Enter your details below to sign up.</p>
       <Input
         type="text"
@@ -69,7 +78,8 @@ function SignupForm() {
         errorText={errorText}
         handler={closeErrorHandler}
       />
-      <Input type="submit" value="Sign up!" />
+      <Input type="submit" value="Sign up!" pending={pending} />
+      <Link to="/login">Already have an account? Login here!</Link>
     </form>
   );
 }
