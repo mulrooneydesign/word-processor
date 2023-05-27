@@ -4,3 +4,7 @@
     border-radius: 0;
     padding: var(--xxs-spacing);
 }
+
+.input--pending {
+    background-color: black;
+}

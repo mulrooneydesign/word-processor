@@ -17,10 +17,13 @@ describe('Signup', () => {
     expect(screen.getByTestId('signup')).toBeInTheDocument();
   });
 
-  test('Renders the submit button', async () => {
+  test('Renders the signup button', async () => {
     render(<RouterProvider router={router} />);
     const form = screen.getByTestId('signup');
-    within(form).getByText('Sign up!');
+    expect(within(form).getByText('Sign up!')).toHaveAttribute(
+      'type',
+      'submit'
+    );
   });
 
   test('Renders the email input', async () => {

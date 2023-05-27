@@ -6,6 +6,7 @@ interface Props {
   handler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   required?: boolean;
+  pending?: boolean;
 }
 
 export default function Input({
@@ -14,12 +15,13 @@ export default function Input({
   handler,
   type,
   required,
+  pending,
 }: Props) {
   return (
     <input
-      className={`input input--${type}`}
+      className={`input input--${type} ${pending ? 'input--pending' : ''}`}
       type={type}
-      value={value}
+      value={!pending ? value : 'Pending...'}
       placeholder={placeholder}
       onChange={handler}
       required={required}
