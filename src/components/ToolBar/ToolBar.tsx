@@ -63,17 +63,21 @@ export default function ToolBar() {
     );
   }
 
-  useEffect(() => {
-    const checkWindowSize = () => {
-      if (window.innerWidth > 768) {
-        useMarkdownStore.setState({ menuIsOpen: true });
-      } else {
-        useMarkdownStore.setState({ menuIsOpen: false });
-      }
-    };
+  const checkWindowSize = () => {
+    if (window.innerWidth < 768) {
+      useMarkdownStore.setState({ menuIsOpen: false });
+    } else {
+      useMarkdownStore.setState({ menuIsOpen: true });
+    }
+  };
 
+  useEffect(() => {
     checkWindowSize();
     window.addEventListener('resize', checkWindowSize);
+
+    return () => {
+      window.removeEventListener('resize', checkWindowSize);
+    };
   }, []);
 
   const currentRoute = useCurrentRoute();
