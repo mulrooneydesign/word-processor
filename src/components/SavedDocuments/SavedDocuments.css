@@ -1,0 +1,33 @@
+.savedDocumentsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.savedDocuments {
+    min-width: 50vw;
+}
+
+.savedDocument {
+    margin-bottom: var(--xs-spacing);
+    max-height: var(--sm-spacing);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: var(--tint-light);
+    padding: var(--xs-spacing);
+    border-radius: var(--border-radius-lg);
+}
+
+.savedDocument .button {
+    gap: var(--xxs-spacing);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.savedDocument h2 {
+    margin: var(--xxs-spacing);
+}

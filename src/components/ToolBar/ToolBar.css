@@ -16,19 +16,17 @@
 }
 
 .buttonGroup {
-  display: flex;
-  gap: 0.5rem;
-  margin-left: auto;
-  flex-direction: column;
   position: fixed;
   top: 82px;
+  left: var(--sm-spacing);
+  right: var(--xs-spacing);
   background: var(--tint-dark);
   padding: var(--xs-spacing);
-  width: calc(100% - var(--md-spacing));
   box-sizing: border-box;
+  border-radius: var(--border-radius);
   margin: 0 auto;
-  border-radius: 6px;
   margin-top: var(--xs-spacing);
+  width: calc(100vw - var(--md-spacing));
 }
 
 .menuItems {
@@ -38,7 +36,7 @@
   gap: 10px;
 }
 
-.menuItems .tooltip .button {
+.menuItems .tooltip a {
   width: 100%;
 }
 
@@ -52,8 +50,15 @@
 
 .showMenuButton button {
   background-color: transparent;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
+.showMenuButton button:hover,
+.showMenuButton button:focus {
+  background-color: transparent;
+  border-color: transparent;
+}
 
 /* show menu button only on mobile devices */
 @media (min-width: 768px) {

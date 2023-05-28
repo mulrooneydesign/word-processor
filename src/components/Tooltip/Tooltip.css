@@ -1,5 +1,6 @@
 .tooltip {
     display: flex;
+    box-sizing: border-box;
 }
 
 .tooltipText {

@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './TextArea.css';
 
 import { useMarkdownStore } from '../../store/store';
@@ -21,6 +21,7 @@ export default function TextArea() {
 
   const markdown = useMarkdownStore((state) => state.markdown);
   const setMarkdown = useMarkdownStore((state) => state.setMarkdown);
+  const currentFile = useMarkdownStore((state) => state.currentFile);
 
   const textAreaIsOpen = useMarkdownStore((state) => state.textAreaIsOpen);
 
@@ -36,6 +37,12 @@ export default function TextArea() {
 
     setTimeout(() => setIsTyping(false), 1000);
   };
+
+  useEffect(() => {
+    if (currentFile) {
+      setMarkdown(currentFile);
+    }
+  }, [currentFile, setMarkdown]);
 
   return (
     <>
@@ -68,6 +75,7 @@ export default function TextArea() {
           className={textAreaIsOpen ? 'textArea' : 'textArea textAreaHidden'}
           placeholder="Type here..."
           onChange={onChangeHandler}
+          value={markdown}
         />
       </div>
 

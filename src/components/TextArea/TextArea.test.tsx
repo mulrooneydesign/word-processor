@@ -1,23 +1,31 @@
 import { describe, expect, it as test } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import App from '../../App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import TextArea from './TextArea';
 
-describe('TextArea', () => {
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <TextArea />,
+  },
+]);
+
+const AppWithRouter = () => <RouterProvider router={router} />;
+
+describe('TextArea as rendered in main app', () => {
   test('should render the textarea', () => {
-    render(<TextArea />);
+    render(<AppWithRouter />);
     expect(screen.getByPlaceholderText('Type here...')).toBeInTheDocument();
   });
 
   test('should render the textarea', () => {
-    render(<TextArea />);
+    render(<AppWithRouter />);
     expect(screen.getByPlaceholderText('Type here...')).toBeInTheDocument();
   });
 
   test('should a allow user to type in the textarea', async () => {
-    render(<TextArea />);
+    render(<AppWithRouter />);
 
     const textarea = screen.getByTestId('textarea');
 
@@ -33,8 +41,9 @@ describe('TextArea', () => {
 
 describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h1 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '# Hello World');
 
     await waitFor(() => {
@@ -45,8 +54,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to h2 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '## Hello World');
 
     await waitFor(() => {
@@ -57,8 +67,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to h3 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '### Hello World');
 
     await waitFor(() => {
@@ -69,8 +80,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to h4 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '#### Hello World');
 
     await waitFor(() => {
@@ -81,8 +93,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to h5 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '##### Hello World');
 
     await waitFor(() => {
@@ -93,8 +106,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to h6 html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '###### Hello World');
 
     await waitFor(() => {
@@ -105,8 +119,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to p html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, 'Hello World');
 
     await waitFor(() => {
@@ -117,8 +132,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to strong html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '**Hello World**');
 
     await waitFor(() => {
@@ -129,8 +145,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to em html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '*Hello World*');
 
     await waitFor(() => {
@@ -141,8 +158,9 @@ describe('App functionality that relies on TextArea', () => {
   });
 
   test('Should render markdown to a html elements to container', async () => {
-    render(<App />);
+    render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
 
     fireEvent.change(textarea, {
       target: { value: '[www.google.com](https://www.google.com)' },
@@ -156,7 +174,7 @@ describe('App functionality that relies on TextArea', () => {
     });
 
     test.only('Should render markdown to code html elements to container', async () => {
-      render(<App />);
+      render(<AppWithRouter />);
       const textarea = screen.getByTestId('textarea');
       userEvent.type(textarea, '```javascript\nconst hello = "world";\n```');
 
