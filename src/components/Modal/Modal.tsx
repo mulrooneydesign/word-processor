@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { X } from 'phosphor-react';
 
-import Button from '../ToolBar/Button/Button';
+import Button from '../Button/Button';
 import './Modal.css';
 import { useMarkdownStore } from '../../store/store';
 

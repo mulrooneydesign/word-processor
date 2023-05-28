@@ -13,7 +13,7 @@
 }
 
 .button:hover {
-  border-color: --purple;
+  border-color: var(--purple);
 }
 
 .button:disabled {

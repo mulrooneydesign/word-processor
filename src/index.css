@@ -14,6 +14,7 @@
 
   --tint: rgba(0, 0, 0, 0.1);
   --tint-dark: rgba(0, 0, 0, 0.2);
+  --tint-light: rgba(0, 0, 0, 0.05);
   --light-gray: #d4d4d4;
   --dark-gray: #a1a1a1;
   --purple: #646cff;
@@ -26,6 +27,7 @@
   --lg-spacing: 2.5rem;
 
   --border-radius: 4px;
+  --border-radius-lg: 16px;
 }
 
 a {

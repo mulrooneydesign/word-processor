@@ -13,6 +13,8 @@ interface MarkdownState {
   toggleMenuIsOpen: () => void;
   isLoggedIn: boolean;
   setIsLoggedIn: (value: boolean) => void;
+  currentFile: string;
+  setCurrentFile: (value: string) => void;
 }
 
 export const useMarkdownStore = create<MarkdownState>((set) => ({
@@ -26,8 +28,10 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
   textAreaIsOpen: true,
   toggleTextAreaIsOpen: () =>
     set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
-  menuIsOpen: true,
+  menuIsOpen: false,
   toggleMenuIsOpen: () => set((state) => ({ menuIsOpen: !state.menuIsOpen })),
   isLoggedIn: false,
   setIsLoggedIn: (value: boolean) => set(() => ({ isLoggedIn: value })),
+  currentFile: '',
+  setCurrentFile: (value: string) => set(() => ({ currentFile: value })),
 }));

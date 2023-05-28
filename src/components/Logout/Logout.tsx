@@ -12,6 +12,8 @@ function LogoutForm() {
   const [pending, setPending] = useState(false);
 
   const setIsLoggedIn = useMarkdownStore((state) => state.setIsLoggedIn);
+  const setCurrentFile = useMarkdownStore((state) => state.setCurrentFile);
+  const setMarkdown = useMarkdownStore((state) => state.setMarkdown);
 
   const logoutHandler = useCallback(async () => {
     if (pending) return;
@@ -21,6 +23,8 @@ function LogoutForm() {
 
     if (!error) {
       setIsLoggedIn(false);
+      setCurrentFile('');
+      setMarkdown('');
     }
 
     if (error) {
@@ -29,7 +33,7 @@ function LogoutForm() {
       setPending(false);
     }
     return;
-  }, [pending, setIsLoggedIn]);
+  }, [pending, setIsLoggedIn, setCurrentFile, setMarkdown]);
 
   const closeErrorHandler = () => {
     setIsError(false);

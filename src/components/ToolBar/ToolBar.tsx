@@ -1,6 +1,4 @@
 import {
-  ArrowUUpLeft,
-  ArrowUUpRight,
   FloppyDisk,
   FolderNotchOpen,
   List,
@@ -9,17 +7,18 @@ import {
   UserMinus,
 } from 'phosphor-react';
 
-import Button from './Button/Button';
+import Button from '../Button/Button';
 import { useMarkdownStore } from '../../store/store';
 import { exportFile } from '../../helpers/exportFile';
 import { Modal } from '../Modal/Modal';
 
-import './ToolBar.css';
 import Tootip from '../Tooltip/Tooltip';
 import { useEffect } from 'react';
 import { useCurrentRoute } from '../../helpers/useCurrentRoute';
 
 import { Link } from 'react-router-dom';
+
+import './ToolBar.css';
 
 export default function ToolBar() {
   const toggleModalIsOpen = useMarkdownStore(
@@ -73,6 +72,7 @@ export default function ToolBar() {
       }
     };
 
+    checkWindowSize();
     window.addEventListener('resize', checkWindowSize);
   }, []);
 
@@ -96,18 +96,28 @@ export default function ToolBar() {
         {menuIsOpen && (
           <div className="buttonGroup">
             <div className="menuItems">
-              <Tootip text="Save your file to disk">
-                <Button
-                  icon={FloppyDisk}
-                  text="Save"
-                  handler={() => showModalHandler()}
-                  disabled={currentRoute !== '/'}
-                />
-              </Tootip>
-              <Button icon={FolderNotchOpen} text="Load" disabled />
-              <Button icon={ArrowUUpLeft} text="Undo" disabled />
-              <Button icon={ArrowUUpRight} text="Redo" disabled />
-
+              {isLoggedIn && (
+                <Tootip text="Export your file to disk">
+                  <Button
+                    icon={FloppyDisk}
+                    text="Export"
+                    handler={() => showModalHandler()}
+                    disabled={currentRoute !== '/'}
+                  />
+                </Tootip>
+              )}
+              {isLoggedIn && (
+                <Tootip text="Load your saved documents">
+                  <Button
+                    icon={FolderNotchOpen}
+                    text="Load"
+                    route="/saved-documents"
+                    disabled={
+                      currentRoute === '/saved-documents' || !isLoggedIn
+                    }
+                  />
+                </Tootip>
+              )}
               {!isLoggedIn && (
                 <Tootip text="Register a new user">
                   <Button
@@ -118,8 +128,18 @@ export default function ToolBar() {
                   />
                 </Tootip>
               )}
+              {!isLoggedIn && (
+                <Tootip text="Login to your account">
+                  <Button
+                    icon={UserPlus}
+                    text="Login"
+                    route="/login"
+                    disabled={currentRoute === '/login'}
+                  />
+                </Tootip>
+              )}
               {isLoggedIn && (
-                <Tootip text="Logout">
+                <Tootip text="Log your user out">
                   <Button
                     icon={UserMinus}
                     text="Logout"

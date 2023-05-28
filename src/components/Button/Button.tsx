@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import ButtonText from '../ButtonText/ButtonText';
 import './Button.css';
 
-interface Props {
+interface ButtonProps {
   icon?: React.FC;
   text?: string;
   handler?: () => void;
@@ -10,7 +9,14 @@ interface Props {
   route?: string;
 }
 
-const ButtonChild = ({ disabled, handler, icon, text }: Props) => {
+interface ButtonTextProps {
+  text: string;
+}
+function ButtonText({ text }: ButtonTextProps) {
+  return <span className="buttonText">{text}</span>;
+}
+
+const ButtonChild = ({ disabled, handler, icon, text }: ButtonProps) => {
   const Icon = icon as React.FC;
 
   return (
@@ -33,7 +39,7 @@ export default function Button({
   handler,
   disabled,
   route,
-}: Props) {
+}: ButtonProps) {
   if (route)
     return (
       <Link to={route}>
