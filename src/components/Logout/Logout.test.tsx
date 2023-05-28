@@ -17,8 +17,8 @@ describe('Logout', () => {
     expect(screen.getByTestId('logout')).toBeInTheDocument();
   });
 
-  test('Renders the login link', async () => {
+  test('Renders the login link and the login button', async () => {
     render(<RouterProvider router={router} />);
-    expect(screen.getByText('Login')).toBeInTheDocument();
+    expect(screen.getAllByText('Login')).toHaveLength(2);
   });
 });

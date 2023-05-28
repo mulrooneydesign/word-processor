@@ -16,15 +16,9 @@ describe('ToolBar', () => {
     expect(screen.getByTestId('toolBar')).toBeInTheDocument();
   });
 
-  test('should render the save button', () => {
+  test('should render the Login button', () => {
     render(<RouterProvider router={router} />);
-    expect(screen.getByText('Save')).toBeInTheDocument();
-  });
-
-  test.todo('should render the load button', () => {
-    // only works when signed in
-    render(<RouterProvider router={router} />);
-    expect(screen.getByText('Load')).toBeInTheDocument();
+    expect(screen.getByText('Login')).toBeInTheDocument();
   });
 
   test('should render the sign up button', () => {

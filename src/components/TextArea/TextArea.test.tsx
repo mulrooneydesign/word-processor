@@ -43,6 +43,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h1 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '# Hello World');
 
     await waitFor(() => {
@@ -55,6 +56,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h2 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '## Hello World');
 
     await waitFor(() => {
@@ -67,6 +69,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h3 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '### Hello World');
 
     await waitFor(() => {
@@ -79,6 +82,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h4 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '#### Hello World');
 
     await waitFor(() => {
@@ -91,6 +95,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h5 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '##### Hello World');
 
     await waitFor(() => {
@@ -103,6 +108,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to h6 html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '###### Hello World');
 
     await waitFor(() => {
@@ -115,6 +121,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to p html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, 'Hello World');
 
     await waitFor(() => {
@@ -127,6 +134,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to strong html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '**Hello World**');
 
     await waitFor(() => {
@@ -139,6 +147,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to em html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
     userEvent.type(textarea, '*Hello World*');
 
     await waitFor(() => {
@@ -151,6 +160,7 @@ describe('App functionality that relies on TextArea', () => {
   test('Should render markdown to a html elements to container', async () => {
     render(<AppWithRouter />);
     const textarea = screen.getByTestId('textarea');
+    userEvent.clear(textarea);
 
     fireEvent.change(textarea, {
       target: { value: '[www.google.com](https://www.google.com)' },
