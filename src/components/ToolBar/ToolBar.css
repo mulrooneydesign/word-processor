@@ -5,7 +5,7 @@
   padding: var(--xs-spacing);
   width: 100%;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .title {
@@ -20,7 +20,7 @@
   top: 82px;
   left: var(--sm-spacing);
   right: var(--xs-spacing);
-  background: var(--tint-dark);
+  background: var(--menu-background);
   padding: var(--xs-spacing);
   box-sizing: border-box;
   border-radius: var(--border-radius);
@@ -61,7 +61,7 @@
 }
 
 /* show menu button only on mobile devices */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 
   .toolBar {
     justify-content: flex-start;

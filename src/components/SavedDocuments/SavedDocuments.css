@@ -28,6 +28,22 @@
     justify-content: center;
 }
 
+.savedDocumentsContainer h1 {
+    font-size: var(--header-md);
+    text-align: center;
+}
+
 .savedDocument h2 {
     margin: var(--xxs-spacing);
+    font-size: var(--header-xs);
+}
+
+@media screen and (min-width: 768px) {
+    .savedDocumentsContainer h1 {
+        font-size: var(--header-lg);
+    }
+
+    .savedDocument h2 {
+        font-size: var(--header-sm);
+    }
 }

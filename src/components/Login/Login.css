@@ -10,58 +10,12 @@
     gap: var(--xs-spacing);
 }
 
-.input--text,
-.input--password {
-    width: 50vw;
-    background-color: transparent;
-    border: 2px solid var(--tint-dark) !important;
-    border-bottom: 1px solid var(--primary-color);
-    color: white;
-    border-radius: var(--border-radius);
+.loginForm h1 {
+    font-size: var(--header-md);
 }
 
-.input--text:focus,
-.input--text:hover,
-.input--password:focus,
-.input--password:hover {
-    border-color: var(--purple);
-    outline-color: var(--purple);
-}
-
-.input--submit {
-    margin: 0;
-    background-color: var(--tint-dark);
-    border: transparent;
-    cursor: pointer;
-    color: white;
-}
-
-.input--submit:focus,
-.input--submit:hover {
-    background-color: var(--purple);
-    color: white;
-    border-color: var(--purple);
-    outline-color: var(--purple);
-}
-
-p.error {
-    color: red;
-    background-color: pink;
-    padding: var(--xxs-spacing) !important;
-    border-radius: var(--border-radius);
-    font-size: 0.8rem;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.closeError {
-    cursor: pointer;
-    color: red;
-}
-
-.closeError:hover,
-.closeError:focus {
-    opacity: 0.5;
+@media screen and (min-width: 768px) {
+    .loginForm h1 {
+        font-size: var(--header-lg);
+    }
 }
