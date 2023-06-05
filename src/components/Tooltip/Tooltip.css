@@ -14,4 +14,11 @@
     text-align: center;
     width: max-content;
     z-index: 100;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .tooltipText {
+        display: block;
+    }
 }
