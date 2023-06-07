@@ -9,10 +9,12 @@ export function Modal({
   title,
   subtitle,
   handler,
+  buttonText,
 }: {
   title: string;
   subtitle?: string;
   handler: () => void;
+  buttonText: string;
 }) {
   const setFilename = useMarkdownStore((state) => state.setFileName);
 
@@ -94,7 +96,7 @@ export function Modal({
           ref={callbackRef}
           required
         />
-        <Button text="Save" handler={handler} disabled={disabled} />
+        <Button text={buttonText} handler={handler} disabled={disabled} />
       </div>
     </div>
   );

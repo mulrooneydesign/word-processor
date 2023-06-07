@@ -1,4 +1,5 @@
 import {
+  Export,
   FloppyDisk,
   FolderNotchOpen,
   List,
@@ -11,6 +12,7 @@ import Button from '../Button/Button';
 import { useMarkdownStore } from '../../store/store';
 import { exportFile } from '../../helpers/exportFile';
 import { Modal } from '../Modal/Modal';
+import { Save } from '../Save/Save';
 
 import Tootip from '../Tooltip/Tooltip';
 import { useEffect } from 'react';
@@ -82,13 +84,23 @@ export default function ToolBar() {
 
   const currentRoute = useCurrentRoute();
 
+  const saveFileNameMenuIsOpen = useMarkdownStore(
+    (state) => state.saveFileNameMenuIsOpen
+  );
+
+  function showSaveModal() {
+    useMarkdownStore.setState({ saveFileNameMenuIsOpen: true });
+  }
+
   return (
     <>
+      {saveFileNameMenuIsOpen && <Save />}
       {modalIsOpen && (
         <Modal
-          title="Download your file"
+          title="Download your file as a .md file"
           subtitle="Please enter a file name"
           handler={saveFileHandler}
+          buttonText="Export"
         />
       )}
 
@@ -103,9 +115,19 @@ export default function ToolBar() {
               {isLoggedIn && (
                 <Tootip text="Export your file to disk">
                   <Button
-                    icon={FloppyDisk}
+                    icon={Export}
                     text="Export"
                     handler={() => showModalHandler()}
+                    disabled={currentRoute !== '/'}
+                  />
+                </Tootip>
+              )}
+              {isLoggedIn && (
+                <Tootip text="Save your file">
+                  <Button
+                    icon={FloppyDisk}
+                    text="Save"
+                    handler={() => showSaveModal()}
                     disabled={currentRoute !== '/'}
                   />
                 </Tootip>

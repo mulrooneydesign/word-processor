@@ -1,0 +1,38 @@
+.save {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 8;
+    background-color: var(--menu-background);
+    padding: var(--xs-spacing);
+    padding-right: var(--s-spacing);
+    gap: var(--xs-spacing);
+}
+
+.saveForm {
+    display: flex;
+    padding: var(--xxs-spacing);
+    width: 100%;
+    gap: var(--xs-spacing);
+    align-items: center;
+}
+
+.saveForm input {
+    box-sizing: border-box;
+    flex: 1 0 70%;
+}
+
+.saveForm .tooltip {
+    box-sizing: border-box;
+    flex: 1 0 15%;
+}
+
+.close {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    cursor: pointer;
+    flex: auto;
+}

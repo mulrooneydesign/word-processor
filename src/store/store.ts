@@ -5,8 +5,12 @@ interface MarkdownState {
   setMarkdown: (value: string) => void;
   fileName: string;
   setFileName: (value: string) => void;
+  dbFileName: string;
+  setDbFileName: (value: string) => void;
   modalIsOpen: boolean;
   toggleModalIsOpen: () => void;
+  saveFileNameMenuIsOpen: boolean;
+  toggleSaveFileNameMenuIsOpen: () => void;
   textAreaIsOpen: boolean;
   toggleTextAreaIsOpen: () => void;
   menuIsOpen: boolean;
@@ -22,9 +26,15 @@ export const useMarkdownStore = create<MarkdownState>((set) => ({
   setMarkdown: (value: string) => set(() => ({ markdown: value })),
   fileName: '',
   setFileName: (value: string) => set(() => ({ fileName: value })),
+  dbFileName: '',
+  setDbFileName: (value: string) => set(() => ({ dbFileName: value })),
   modalIsOpen: false,
   toggleModalIsOpen: () =>
     set((state) => ({ modalIsOpen: !state.modalIsOpen })),
+  saveFileNameMenuIsOpen: false,
+  toggleSaveFileNameMenuIsOpen: () => {
+    set((state) => ({ saveFileNameMenuIsOpen: !state.saveFileNameMenuIsOpen }));
+  },
   textAreaIsOpen: true,
   toggleTextAreaIsOpen: () =>
     set((state) => ({ textAreaIsOpen: !state.textAreaIsOpen })),
