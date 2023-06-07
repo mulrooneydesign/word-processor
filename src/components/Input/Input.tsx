@@ -1,7 +1,7 @@
 import './Input.css';
 
 interface Props {
-  value: string;
+  value?: string;
   placeholder?: string;
   handler?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
