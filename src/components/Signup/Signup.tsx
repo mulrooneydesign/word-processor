@@ -4,6 +4,7 @@ import ToolBar from '../ToolBar/ToolBar';
 import Input from '../Input/Input';
 import { X } from 'phosphor-react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 function SignupForm() {
@@ -13,16 +14,22 @@ function SignupForm() {
   const [errorText, setErrorText] = useState('');
   const [pending, setPending] = useState(false);
 
+  const navigate = useNavigate();
+
   const signupHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     if (pending) return;
 
     setPending(true);
-    const { error } = await db.auth.signUp({
+    const { data, error } = await db.auth.signUp({
       email,
       password,
     });
+
+    if (!error && data.user?.confirmation_sent_at) {
+      navigate('/register-success');
+    }
 
     if (error) {
       setPending(false);
@@ -31,6 +38,7 @@ function SignupForm() {
       return;
     }
     setPending(false);
+
     return;
   };
 

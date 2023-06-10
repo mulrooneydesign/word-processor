@@ -7,6 +7,7 @@ import './index.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import SavedDocuments from './components/SavedDocuments/SavedDocuments';
+import RegisterSuccess from './components/RegisterSuccess/RegisterSuccess';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/saved-documents',
     element: <SavedDocuments />,
+  },
+  {
+    path: '/register-success',
+    element: <RegisterSuccess />,
   },
 ]);
 

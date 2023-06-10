@@ -1,21 +1,23 @@
-.login {
+.registerSuccessContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 70vh;
 }
 
-.loginForm {
-    display: grid;
-    gap: var(--xs-spacing);
+.registerSuccess {
+    min-width: 50vw;
 }
 
-.loginForm h1 {
+.registerSuccess h1 {
     font-size: var(--header-md);
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {
-    .loginForm h1 {
+    .registerSuccess h1 {
         font-size: var(--header-lg);
     }
 }
