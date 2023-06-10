@@ -10,6 +10,7 @@
     padding: var(--xs-spacing);
     padding-right: var(--s-spacing);
     gap: var(--xs-spacing);
+    top: 0;
 }
 
 .saveForm {
