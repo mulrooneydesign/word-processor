@@ -23,12 +23,11 @@
 
 .saveForm input {
     box-sizing: border-box;
-    flex: 1 0 70%;
+    width: 100%;
 }
 
 .saveForm .tooltip {
     box-sizing: border-box;
-    flex: 1 0 15%;
 }
 
 .close {
