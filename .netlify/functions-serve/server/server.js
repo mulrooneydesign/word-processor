@@ -1,0 +1,1 @@
+module.exports = require('./src/functions/server/server.js')

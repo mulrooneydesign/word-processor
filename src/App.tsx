@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import TextArea from './components/TextArea/TextArea';
 import ToolBar from './components/ToolBar/ToolBar';
 import Signup from './components/Signup/Signup';
-import { db } from './api/db';
+import { db } from '../functions/server/api/db';
 import { useMarkdownStore } from './store/store';
 
 function App() {

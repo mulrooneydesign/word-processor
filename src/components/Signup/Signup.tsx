@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '../../api/db';
+import { db } from '../../../functions/server/api/db';
 import ToolBar from '../ToolBar/ToolBar';
 import Input from '../Input/Input';
 import { X } from 'phosphor-react';

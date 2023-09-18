@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { db } from '../../api/db';
+import { db } from '../../../functions/server/api/db';
 import ToolBar from '../ToolBar/ToolBar';
 import { X } from 'phosphor-react';
 import { Link } from 'react-router-dom';

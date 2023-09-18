@@ -1,7 +1,7 @@
 import { useMarkdownStore } from '../../store/store';
 import { X } from 'phosphor-react';
-import { db } from '../../api/db';
-import { getUserId } from '../../api/getUserId';
+import { db } from '../../../functions/server/api/db';
+import { getUserId } from '../../../functions/server/api/getUserId';
 import Input from '../Input/Input';
 
 import './Save.css';
